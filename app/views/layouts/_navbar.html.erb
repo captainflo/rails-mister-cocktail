@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+  <%= link_to cocktails_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "heart.svg" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -43,7 +43,7 @@
     </div>
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <%= link_to "New Cocktail", new_cocktail_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->

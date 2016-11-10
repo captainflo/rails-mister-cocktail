@@ -1,0 +1,7 @@
+
+
+<h1><%= @cocktail.name %></h1>
+<%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_path(@cocktail) %>
+<%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_path(@cocktail),
+  method: :delete,
+  data: { confirm: "Are you sure?" } %>

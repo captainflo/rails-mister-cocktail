@@ -1,0 +1,9 @@
+    <h1>The Cocktails</h1>
+    <% @cocktails.each do |cocktail| %>
+    <h2><%= link_to cocktail.name, cocktail %></h2>
+    <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_path(cocktail.id) %>
+    <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_path(cocktail.id),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+    <hr>
+    <% end %>
