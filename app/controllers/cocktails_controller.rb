@@ -5,6 +5,8 @@ before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
   end
 
   def show
+    @ingredients = Ingredient.ordered
+    @dose = Dose.new
   end
 
   def new

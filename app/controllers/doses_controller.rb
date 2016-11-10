@@ -1,47 +1,26 @@
 class DosesController < ApplicationController
-before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
-  def index
-    @cocktails = Cocktail.all
-  end
+  before_action :find_cocktail, only: [ :new, :create ]
 
-  def show
-  end
+    def new
+      @dose = Dose.new
+    end
 
-  def new
-    @cocktail = Cocktail.new
-  end
+    def create
+      @dose = @cocktail.doses.new(dose_params)
+      @dose.ingredient = Ingredient.find(params[:dose][:ingredient]) unless params[:dose][:ingredient].empty?
+      if @dose.save
+      redirect_to cocktail_path(@cocktail)
+      else
+        render '/cocktails/show'
+      end
+    end
 
-  def create
-    @cocktail = Cocktail.new(cocktail_params)
-    if @cocktail.save
-      redirect_to @cocktail
-    else
-        render :new
+    private
+
+    def dose_params
+      params.require(:dose).permit(:description)
+    end
+    def find_cocktail
+      @cocktail = Cocktail.find(params[:cocktail_id])
     end
   end
-
-  def edit
-  end
-
-  def update
-    @cocktail.update(cocktail_params)
-    redirect_to cocktail_path(@cocktail)
-  end
-
-  def destroy
-    @cocktail.destroy
-    redirect_to cocktails_path
-  end
-
-  private
-
-  def set_cocktail
-    @cocktail = Cocktail.find(params[:id])
-  end
-
-  def cocktail_params
-    # *Strong params*: You need to *whitelist* what can be updated by the user
-    # Never trust user data!
-    params.require(:cocktail).permit(:name)
-  end
-end
