@@ -2,15 +2,28 @@
 <%= @cocktail.name %>
 <% end%>
 
-<h1><%= @cocktail.name %></h1>
-<ul>
-<% @cocktail.doses.each do |dose| %>
-  <li><%= dose.ingredient.name %> <%= dose.description %></li>
-<%end%>
-</ul>
-<%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_path(@cocktail) %>
-<%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_path(@cocktail),
-  method: :delete,
-  data: { confirm: "Are you sure?" } %>
+<h1><i class="fa fa-glass" aria-hidden="true"></i> <%= @cocktail.name %></h1>
+<div class="row">
+  <div class="col-sm-8">
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+        <p><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%= dose.ingredient.name %> <%= dose.description %>
+             <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_dose_path(@cocktail, dose ) %>
+             <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_dose_path(@cocktail, dose),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %></p>
+      <%end%>
+    </ul>
+    <p><%= link_to '<i class="fa fa-arrow-left" aria-hidden="true"></i>'.html_safe, cocktails_path%><p>
+</div>
+<div class="col-sm-4">
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Add Ingredient
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    <%= render 'doses/form'%>
+  </div>
+</div>
 
-  <%= render 'doses/form'%>
+</div>

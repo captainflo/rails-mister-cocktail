@@ -1,26 +1,47 @@
 class DosesController < ApplicationController
-  before_action :find_cocktail, only: [ :new, :create ]
+before_action :set_dose, only: [:edit, :update, :destroy]
+before_action :set_cocktail, only: [:create, :edit, :update, :destroy]
 
-    def new
-      @dose = Dose.new
-    end
+ def create
+   @dose = @cocktail.doses.new(dose_params)
+   if @dose.save
+     redirect_to @cocktail
+   else
+     render 'cocktails/show'
+   end
+ end
 
-    def create
-      @dose = @cocktail.doses.new(dose_params)
-      @dose.ingredient = Ingredient.find(params[:dose][:ingredient]) unless params[:dose][:ingredient].empty?
-      if @dose.save
-      redirect_to cocktail_path(@cocktail)
-      else
-        render '/cocktails/show'
-      end
-    end
+ def edit
+ end
 
-    private
+ def update
+   if @dose.update(dose_params)
+     redirect_to @cocktail
+   else
+     render :edit
+   end
+ end
 
-    def dose_params
-      params.require(:dose).permit(:description)
-    end
-    def find_cocktail
-      @cocktail = Cocktail.find(params[:cocktail_id])
-    end
-  end
+ def destroy
+   @dose.destroy
+   redirect_to @cocktail
+ end
+
+ private
+
+ def set_dose
+   @dose = Dose.find(params[:id])
+ end
+
+ def set_cocktail
+   @cocktail = Cocktail.find(params[:cocktail_id])
+ end
+
+ def dose_params
+   temp_params = params.require(:dose).permit(:ingredient_id, :description)
+   result = {}
+   result[:description] = temp_params[:description]
+   result[:ingredient] = Ingredient.find(temp_params[:ingredient_id]) unless temp_params[:ingredient_id].empty?
+   result
+ end
+end
