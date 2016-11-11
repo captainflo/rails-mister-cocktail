@@ -7,11 +7,13 @@
   <div class="col-sm-8">
     <ul>
       <% @cocktail.doses.each do |dose| %>
+      <% if dose.persisted? %>
         <p><i class="fa fa-hand-o-right" aria-hidden="true"></i> <%= dose.ingredient.name %> <%= dose.description %>
              <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_dose_path(@cocktail, dose ) %>
              <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_dose_path(@cocktail, dose),
               method: :delete,
               data: { confirm: "Are you sure?" } %></p>
+      <%end%>
       <%end%>
     </ul>
     <p><%= link_to '<i class="fa fa-arrow-left" aria-hidden="true"></i>'.html_safe, cocktails_path%><p>

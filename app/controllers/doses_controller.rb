@@ -38,10 +38,6 @@ before_action :set_cocktail, only: [:create, :edit, :update, :destroy]
  end
 
  def dose_params
-   temp_params = params.require(:dose).permit(:ingredient_id, :description)
-   result = {}
-   result[:description] = temp_params[:description]
-   result[:ingredient] = Ingredient.find(temp_params[:ingredient_id]) unless temp_params[:ingredient_id].empty?
-   result
+   params.require(:dose).permit(:ingredient_id, :description)
  end
 end

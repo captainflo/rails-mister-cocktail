@@ -9,3 +9,8 @@ ingredients = JSON.parse(open("http://www.thecocktaildb.com/api/json/v1/1/list.p
 ingredients.each do |ingredient|
   Ingredient.create(name: ingredient["strIngredient1"])
 end
+
+url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
+product = Product.new(name: 'NES')
+product.remote_photo_url = url
+product.save
