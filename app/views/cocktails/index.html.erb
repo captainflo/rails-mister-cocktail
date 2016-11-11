@@ -15,7 +15,9 @@
         <li><%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_path(cocktail.id),
           method: :delete,
           data: { confirm: "Are you sure?" } %></li>
+          <li><%= link_to '<i class="fa fa-star"></i>'.html_safe, cocktail_path(cocktail.id) %></li>
       </ul>
     </div>
+
     <hr>
         <% end %>

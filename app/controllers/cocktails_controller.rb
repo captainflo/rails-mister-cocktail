@@ -6,6 +6,13 @@ before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
 
   def show
     @dose = Dose.new
+    @review = @cocktail.reviews.new
+    @reviews = Review.where(cocktail_id: @cocktail.id)
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
   end
 
   def new
