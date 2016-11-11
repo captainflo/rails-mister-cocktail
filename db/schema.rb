@@ -54,14 +54,6 @@ ActiveRecord::Schema.define(version: 20161111134208) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "photo"
-  end
-
   add_foreign_key "doses", "cocktails"
   add_foreign_key "doses", "ingredients"
 end
