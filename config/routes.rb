@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :doses, only: [:create, :edit, :update, :destroy]
     resources :reviews
   end
+  get 'search', to: 'search#index'
 end
