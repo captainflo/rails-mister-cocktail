@@ -43,6 +43,6 @@ before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
   def cocktail_params
     # *Strong params*: You need to *whitelist* what can be updated by the user
     # Never trust user data!
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :description, :photo, :photo_cache)
   end
 end

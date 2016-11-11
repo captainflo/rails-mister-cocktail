@@ -1,9 +1,21 @@
+
     <h1>The Cocktails</h1>
     <% @cocktails.each do |cocktail| %>
-    <h2><%= link_to cocktail.name, cocktail %></h2>
-    <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_path(cocktail.id) %>
-    <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_path(cocktail.id),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
+    <div class="product">
+      <div class='product-upvote'>
+
+      </div>
+      <%= cl_image_tag cocktail.photo,  crop: :fill, class: "product-image hidden-xs" %>
+      <div class='product-body'>
+        <h2><%= link_to cocktail.name, cocktail %></h2>
+        <p><%= cocktail.description%></p>
+      </div>
+      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+        <li><%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_cocktail_path(cocktail.id) %></li>
+        <li><%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, cocktail_path(cocktail.id),
+          method: :delete,
+          data: { confirm: "Are you sure?" } %></li>
+      </ul>
+    </div>
     <hr>
-    <% end %>
+        <% end %>

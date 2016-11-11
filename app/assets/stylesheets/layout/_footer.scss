@@ -1,1 +1,28 @@
 // Your footer style
+/* Footer design */
+#footer {
+  flex: 1;
+  background: #333333;
+  left: 0px;
+  bottom: 0px;
+  position: relative;
+  padding: 20px 10px;
+  color: #CCCCCC;
+  z-index: 1;
+  width: 100%;
+}
+#footer p {
+  margin-top: 17px;
+}
+#footer ul {
+  margin-top: 5px;
+}
+#footer a {
+  color: #CCCCCC;
+  font-size: 30px;
+  letter-spacing: 20px;
+  transition: color 0.5s ease;
+}
+#footer a:hover{
+  color: yellow;
+}

@@ -16,16 +16,17 @@
       <%end%>
       <%end%>
     </ul>
+    <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
     <p><%= link_to '<i class="fa fa-arrow-left" aria-hidden="true"></i>'.html_safe, cocktails_path%><p>
-</div>
+  </div>
 <div class="col-sm-4">
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-  Add Ingredient
-</button>
-<div class="collapse" id="collapseExample">
-  <div class="well">
-    <%= render 'doses/form'%>
+  <button class="btn-medium" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Add Ingredient
+  </button>
+  <div class="collapse" id="collapseExample">
+    <div class="well">
+      <%= render 'doses/form'%>
+    </div>
   </div>
 </div>
-
 </div>
