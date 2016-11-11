@@ -7,7 +7,7 @@
       </div>
       <%= cl_image_tag cocktail.photo,  crop: :fill, class: "product-image hidden-xs" %>
       <div class='product-body'>
-        <h2><%= link_to cocktail.name, cocktail %></h2>
+        <h2><%= link_to cocktail.name, cocktail, class: "cocktail_name" %></h2>
         <p><%= cocktail.description%></p>
       </div>
       <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
